@@ -26,6 +26,8 @@ func main() {
 	e.GET("/hotels", hotels.GetHotels)
 	e.PATCH("/hotels/:name", hotels.PatchHotels)
 	e.DELETE("/hotels/:name", hotels.DeleteHotels)
+	e.GET("/hotels/:country", hotels.GetHotelByCountry)
+	e.GET("hotels/:name", hotels.GetHotelByName)
 
 	e.Logger.Fatal(e.Start(":1228"))
 }

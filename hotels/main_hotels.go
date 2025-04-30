@@ -111,3 +111,36 @@ func InitDB() error {
 	}
 	return db.AutoMigrate(&Hotel{})
 }
+
+func GetHotelByCountry(c echo.Context) error {
+	country := c.Param("country")
+	var hotels []Hotel
+
+	if err := db.Where("country = ?", country).Find(&hotels).Error; err != nil {
+		return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to filter hotels, sorry"})
+	}
+
+	var response []hotelGet
+
+	for _, ht := range hotels {
+		response = append(response, toHotelGet(&ht))
+	}
+
+	return c.JSON(http.StatusOK, response)
+}
+
+func GetHotelByName(c echo.Context) error {
+	name := c.Param("name")
+	var hotels []Hotel
+
+	if err := db.Where("name = ?", name).Find(&hotels).Error; err != nil {
+		return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to filter hotels by name, sorry"})
+	}
+
+	var resp []hotelGet
+	for _, hotel := range hotels {
+		resp = append(resp, toHotelGet(&hotel))
+	}
+
+	return c.JSON(http.StatusOK, resp)
+}

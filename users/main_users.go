@@ -13,6 +13,7 @@ import (
 type User struct {
 	gorm.Model
 	Username string `json:"name" validate:"required,min=3,max=30"`
+	Password string `json:"password" validate:"required,min=3,max=30"`
 }
 
 var db *gorm.DB

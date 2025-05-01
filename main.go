@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// Инициализация БД
+
 	if err := users.InitDB(); err != nil {
 		panic("Failed to init users DB")
 	}
@@ -18,11 +18,9 @@ func main() {
 
 	e := echo.New()
 
-	// Роуты пользователей
 	e.POST("/auth", users.CreateUser)
 
-	// Роуты отелей
-	e.POST("/hotels", hotels.CreateHotel) // или /hotels_make, если так задумано
+	e.POST("/hotels", hotels.CreateHotel)
 	e.GET("/hotels", hotels.GetHotels)
 	e.PATCH("/hotels/:name", hotels.PatchHotels)
 	e.DELETE("/hotels/:name", hotels.DeleteHotels)

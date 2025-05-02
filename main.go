@@ -20,12 +20,12 @@ func main() {
 
 	e.POST("/auth", users.CreateUser)
 
-	e.POST("/hotels", hotels.CreateHotel)
+	e.POST("/hotelsCreate", hotels.CreateHotel)
 	e.GET("/hotels", hotels.GetHotels)
-	e.PATCH("/hotels/:name", hotels.PatchHotels)
-	e.DELETE("/hotels/:name", hotels.DeleteHotels)
-	e.GET("/hotels/:country", hotels.GetHotelByCountry)
-	e.GET("hotels/:name", hotels.GetHotelByName)
+	e.PATCH("/hotelsPatch/:name", hotels.PatchHotels)
+	e.DELETE("/hotelsDelete/:name", hotels.DeleteHotels)
+	e.GET("/hotelsByCoun/:country", hotels.GetHotelByCountry)
+	e.GET("hotelsByName/:name", hotels.GetHotelByName)
 
 	e.Logger.Fatal(e.Start(":1228"))
 }

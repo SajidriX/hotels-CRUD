@@ -83,7 +83,7 @@ func PatchHotels(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, echo.Map{"error": "Invalid input"})
 	}
 	if err := db.Model(&hotel).Updates(updateData).Error; err != nil {
-		return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to update cheese"})
+		return c.JSON(http.StatusInternalServerError, echo.Map{"error": "Failed to update hotel"})
 	}
 
 	return c.JSON(http.StatusOK, hotel)
